@@ -1,44 +1,49 @@
 {
-    "name": "berlindb/sc-core-tables",
-    "description": "Sugar Calendar's core database tables, expressed as berlindb/core schemas - auto-generated from a live Sugar Calendar install to measure structural parity.",
-    "type": "wordpress-plugin",
-    "license": "GPL-2.0-or-later",
-    "require": {
-        "php": ">=8.1",
-        "berlindb/core": "dev-master"
+  "name": "berlindb/sc-core-tables",
+  "description": "Sugar Calendar's core database tables, expressed as berlindb/core schemas - auto-generated from a live Sugar Calendar install to measure structural parity.",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "php": ">=8.1",
+    "berlindb/core": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.6",
+    "yoast/wp-test-utils": "^1.2",
+    "phpstan/phpstan": "^2",
+    "szepeviktor/phpstan-wordpress": "^2",
+    "phpstan/extension-installer": "^1.4",
+    "berlindb/readiness": "dev-master"
+  },
+  "repositories": {
+    "berlindb-core": {
+      "type": "vcs",
+      "url": "https://github.com/berlindb/core"
     },
-    "require-dev": {
-        "phpunit/phpunit": "^9.6",
-        "yoast/wp-test-utils": "^1.2",
-        "phpstan/phpstan": "^2",
-        "szepeviktor/phpstan-wordpress": "^2",
-        "phpstan/extension-installer": "^1.4"
-    },
-    "repositories": {
-        "berlindb-core": {
-            "type": "vcs",
-            "url": "https://github.com/berlindb/core"
-        }
-    },
-    "autoload": {
-        "psr-4": {
-            "SCCoreTables\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "SCCoreTables\\Tests\\": "tests/"
-        }
-    },
-    "scripts": {
-        "test": "phpunit",
-        "phpstan": "phpstan analyse --memory-limit=1G"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "config": {
-        "allow-plugins": {
-            "phpstan/extension-installer": true
-        }
+    "berlindb-readiness": {
+      "type": "vcs",
+      "url": "https://github.com/berlindb/readiness"
     }
+  },
+  "autoload": {
+    "psr-4": {
+      "SCCoreTables\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SCCoreTables\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "phpstan": "phpstan analyse --memory-limit=1G"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "phpstan/extension-installer": true
+    }
+  }
 }
