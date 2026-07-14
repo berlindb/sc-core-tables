@@ -1,0 +1,7 @@
+/vendor/
+/berlindb-core/
+/sugar-calendar/
+/composer.lock
+/.phpunit.result.cache
+/.phpunit.cache/
+/phpunit.xml

@@ -1,0 +1,10 @@
+parameters:
+    # Level 2 is the honest ceiling for a BerlinDB consumer: at level 3+ PHPStan reports
+    # property.phpDocType on every schema's $columns/$indexes, because core's base
+    # Kern\Schema types them as array<Column>/array<Index> (the hydrated runtime type)
+    # while consumers - including these generated classes - declare raw config arrays.
+    level: 2
+    paths:
+        - src
+    bootstrapFiles:
+        - vendor/autoload.php
