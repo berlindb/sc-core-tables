@@ -3,9 +3,10 @@
 ![Sugar Calendar readiness](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/berlindb/sc-core-tables/master/.readiness/sugar-calendar.json)
 
 The **readiness** badge is the *behavioral* score from
-[berlindb/readiness](https://github.com/berlindb/readiness): of the per-column flags
-Sugar Calendar's fork declares, how many shared `berlindb/core` can express. A gap is a
-concrete item on the path to reunifying SC onto shared core.
+[berlindb/readiness](https://github.com/berlindb/readiness): how much of Sugar Calendar's
+fork behavior shared `berlindb/core` can express - its per-column flags plus its
+relationships/meta (mapped in [`.readiness/capabilities.php`](.readiness/capabilities.php)).
+A gap is a concrete item on the path to reunifying SC onto shared core.
 
 Sugar Calendar's core database tables, expressed as [`berlindb/core`](https://github.com/berlindb/core)
 schemas - **auto-generated** by introspecting a live Sugar Calendar install, and
