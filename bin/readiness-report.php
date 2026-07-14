@@ -14,7 +14,8 @@
  * @package SCCoreTables
  */
 
-declare( strict_types = 1 );
+// No declare(strict_types) here: wp eval-file evals this file, where a strict_types
+// declaration is a fatal ("must be the very first statement in the script").
 
 use BerlinDB\Readiness\Badge;
 use BerlinDB\Readiness\CoreCapabilities;
