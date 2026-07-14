@@ -33,14 +33,21 @@ tests_add_filter(
 	}
 );
 
-// SC's Table constructor self-installs under the test constant (WP_TESTS_DIR), but
-// instantiate the table objects explicitly so the tables are guaranteed present.
+// SC's Table constructor only self-installs under its own test constant, which the
+// Yoast/WP test scaffold does not set, so force the install for any missing table.
+// This runs during bootstrap (before the per-test transaction + temporary-table
+// rewrite), so the tables are created for real.
 tests_add_filter(
 	'wp_loaded',
 	static function () {
 		foreach ( array( '\\Sugar_Calendar\\Events_Table', '\\Sugar_Calendar\\Meta_Table' ) as $class ) {
-			if ( class_exists( $class ) ) {
-				new $class();
+			if ( ! class_exists( $class ) ) {
+				continue;
+			}
+
+			$table = new $class();
+			if ( method_exists( $table, 'exists' ) && ! $table->exists() && method_exists( $table, 'install' ) ) {
+				$table->install();
 			}
 		}
 	}
