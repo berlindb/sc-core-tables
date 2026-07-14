@@ -57,7 +57,7 @@ jobs:
         run: |
           wp core download --path=wp --version=latest
           wp config create --path=wp --dbname=wordpress --dbuser=root --dbpass=root --dbhost=127.0.0.1:3306
-          wp core install --path=wp --url=http://localhost --title=scct --admin_user=admin --admin_password=admin --admin_email=a@b.c --skip-email
+          wp core install --path=wp --url=http://localhost --title=scct --admin_user=admin --admin_password=admin --admin_email=admin@example.com --skip-email
 
       - name: Install + activate latest Sugar Calendar (Lite)
         run: |
