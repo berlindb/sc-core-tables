@@ -84,6 +84,13 @@ jobs:
           tools: composer
           coverage: none
 
+      - name: Normalize core to a master branch
+        # The composer `path` repo derives its version from the checked-out branch. The
+        # canary checks out an exact SHA (detached HEAD), which advertises dev-<sha> and
+        # fails the `berlindb/core: dev-master` constraint. Force a local master branch at
+        # whatever was checked out, so it advertises dev-master while testing that commit.
+        run: git -C berlindb-core checkout -B master
+
       - name: Point composer at the checked-out core
         run: composer config repositories.berlindb-core path ./berlindb-core
 
