@@ -1,12 +1,13 @@
 # sc-core-tables
 
-![Sugar Calendar readiness](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/berlindb/sc-core-tables/master/.readiness/sugar-calendar.json)
+[![behavioral](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/berlindb/sc-core-tables/master/.readiness/sugar-calendar.json "Behavioral readiness: can shared berlindb/core RUN Sugar Calendar's queries? Column flags plus the relationship/meta a query needs.")![modeling](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/berlindb/sc-core-tables/master/.readiness/sugar-calendar-modeling.json "Modeling readiness: can core MODEL Sugar Calendar's schema with faithful relationships?")](https://github.com/berlindb/readiness)
 
-The **readiness** badge is the *behavioral* score from
-[berlindb/readiness](https://github.com/berlindb/readiness): how much of Sugar Calendar's
-fork behavior shared `berlindb/core` can express - its per-column flags plus its
-relationships/meta (mapped in [`.readiness/capabilities.php`](.readiness/capabilities.php)).
-A gap is a concrete item on the path to reunifying SC onto shared core.
+The **readiness** chips (from [berlindb/readiness](https://github.com/berlindb/readiness),
+hover for details) score how much of Sugar Calendar's fork shared `berlindb/core` can
+express - **behavioral** (can core run SC's queries?) and **modeling** (can core model
+SC's schema with faithful relationships?): its per-column flags plus its relationships/meta
+(mapped in [`.readiness/capabilities.php`](.readiness/capabilities.php)). A gap is a
+concrete item on the path to reunifying SC onto shared core.
 
 Sugar Calendar's core database tables, expressed as [`berlindb/core`](https://github.com/berlindb/core)
 schemas - **auto-generated** by introspecting a live Sugar Calendar install, and

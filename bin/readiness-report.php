@@ -59,27 +59,31 @@ $supported = CoreCapabilities::fromCore();
 $declared  = SchemaSurface::fromClasses( $classes );
 $flags     = FlagReadiness::score( 'Sugar Calendar', $supported, $declared );
 
-// Relationships / meta: score the curated matrix (imperative in the fork) against core.
+// Relationships / meta: score the curated matrix against core in two dimensions -
+// behavioral (can core RUN SC's queries) vs modeling (can core MODEL SC's schema).
 $matrix_file = __DIR__ . '/../.readiness/capabilities.php';
 $matrix      = is_readable( $matrix_file ) ? (array) require $matrix_file : array();
 $features    = CoreFeatures::fromCore();
-$caps        = CapabilityReadiness::score( 'Sugar Calendar', $features, $matrix );
 
-// One combined behavioral score (flags + relationships/meta) -> one badge.
-$report = Report::combine( 'Sugar Calendar', $flags, $caps );
+$behavioral = Report::combine( 'Sugar Calendar', $flags, CapabilityReadiness::score( 'Sugar Calendar', $features, $matrix, 'behavioral' ) );
+$modeling   = Report::combine( 'Sugar Calendar', $flags, CapabilityReadiness::score( 'Sugar Calendar', $features, $matrix, 'modeling' ) );
 
-printf( "\n== Sugar Calendar behavioral readiness ==\n" );
-printf( "  fork schemas: %d   flags: %d   relationship/meta: %d\n\n", count( $classes ), $flags->total(), $caps->total() );
-foreach ( $report->rows() as $name => $row ) {
+printf( "\n== Sugar Calendar reunification readiness ==\n" );
+printf( "  fork schemas: %d   flags: %d   relationship/meta entries: %d\n\n", count( $classes ), $flags->total(), count( $matrix ) );
+foreach ( $modeling->rows() as $name => $row ) {
 	$status = ( Report::GAP === $row['status'] ) ? 'GAP' : $row['status'];
 	printf( "  %-42s %-11s %s\n", $name, $status, $row['via'] );
 }
-printf( "\n  READINESS: %s%%  (%d/%d)\n", $report->percent(), $report->covered(), $report->total() );
-printf( "  GAPS: %s\n\n", $report->is_ready() ? '(none)' : implode( ', ', $report->gaps() ) );
+printf( "\n  BEHAVIORAL: %s%%  (%d/%d)   MODELING: %s%%  (%d/%d)\n",
+	$behavioral->percent(), $behavioral->covered(), $behavioral->total(),
+	$modeling->percent(), $modeling->covered(), $modeling->total()
+);
+printf( "  MODELING GAPS: %s\n\n", $modeling->is_ready() ? '(none)' : implode( ', ', $modeling->gaps() ) );
 
 $out = __DIR__ . '/../.readiness';
 if ( ! is_dir( $out ) ) {
 	mkdir( $out, 0777, true );
 }
-file_put_contents( $out . '/sugar-calendar.json', Badge::toJson( $report ) );
-printf( "  wrote %s/sugar-calendar.json\n\n", $out );
+file_put_contents( $out . '/sugar-calendar.json', Badge::toJson( $behavioral, 'behavioral' ) );
+file_put_contents( $out . '/sugar-calendar-modeling.json', Badge::toJson( $modeling, 'modeling' ) );
+printf( "  wrote %s/sugar-calendar.json (behavioral) + sugar-calendar-modeling.json\n\n", $out );
