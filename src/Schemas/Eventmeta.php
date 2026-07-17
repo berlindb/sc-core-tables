@@ -23,8 +23,8 @@ class Eventmeta extends Schema {
 
 	/** @var array<int, array<string, mixed>> */
 	public $columns = array(
-			array( 'name' => 'meta_id', 'type' => 'bigint', 'length' => '20', 'unsigned' => true, 'extra' => 'auto_increment', 'primary' => true ),
-			array( 'name' => 'sc_event_id', 'type' => 'bigint', 'length' => '20', 'unsigned' => true, 'default' => '0' ),
+			array( 'name' => 'meta_id', 'type' => 'bigint', 'unsigned' => true, 'extra' => 'auto_increment', 'primary' => true ),
+			array( 'name' => 'sc_event_id', 'type' => 'bigint', 'unsigned' => true, 'default' => '0' ),
 			array( 'name' => 'meta_key', 'type' => 'varchar', 'length' => '255', 'allow_null' => true, 'default' => null ),
 			array( 'name' => 'meta_value', 'type' => 'longtext', 'allow_null' => true, 'default' => null ),
 	);
