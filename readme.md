@@ -50,8 +50,8 @@ exactly on today's `berlindb/core`. SC has no decimal columns (so it never hit
 ## Staying current
 
 A scheduled workflow polls Sugar Calendar's latest release, regenerates the schemas, and
-opens a PR when SC's schema changes. CI runs the capability test against SC stable and
-master, and `berlindb/core` canaries this suite on every push to core master.
+opens a PR when SC's schema changes. CI runs the capability test against SC stable and WordPress.org Subversion
+trunk, and `berlindb/core` canaries this suite on every push to core master.
 
 ## Running locally
 
