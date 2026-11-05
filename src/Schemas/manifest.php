@@ -8,6 +8,7 @@
 declare( strict_types = 1 );
 
 return array(
+	'Discounts' => 'sc_discounts',
 	'Eventmeta' => 'sc_eventmeta',
 	'Events' => 'sc_events',
 	'Orders' => 'sc_orders',
