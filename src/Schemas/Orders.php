@@ -28,6 +28,7 @@ class Orders extends Schema {
 			array( 'name' => 'status', 'type' => 'varchar', 'length' => '20', 'default' => '' ),
 			array( 'name' => 'currency', 'type' => 'varchar', 'length' => '20', 'default' => '' ),
 			array( 'name' => 'discount_id', 'type' => 'bigint', 'unsigned' => true, 'default' => '0' ),
+			array( 'name' => 'discount_code', 'type' => 'varchar', 'length' => '100', 'default' => '' ),
 			array( 'name' => 'email', 'type' => 'varchar', 'length' => '254', 'default' => '' ),
 			array( 'name' => 'first_name', 'type' => 'varchar', 'length' => '100', 'default' => '' ),
 			array( 'name' => 'last_name', 'type' => 'varchar', 'length' => '100', 'default' => '' ),
@@ -49,6 +50,7 @@ class Orders extends Schema {
 
 	/** @var array<int, array<string, mixed>> */
 	public $indexes = array(
+			array( 'type' => 'key', 'name' => 'discount_id', 'columns' => array( 'discount_id' ) ),
 			array( 'type' => 'key', 'name' => 'email', 'columns' => array( 'email' ) ),
 			array( 'type' => 'primary', 'columns' => array( 'id' ) ),
 			array( 'type' => 'unique', 'name' => 'transaction_id', 'columns' => array( 'transaction_id' ) ),
